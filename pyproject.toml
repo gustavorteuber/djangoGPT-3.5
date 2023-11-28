@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "djangogpt-3-5"
+version = "0.1.0"
+description = "CHATGPT OPENAI ON DJANGO! BY GUSTAVORTEUBER"
+authors = ["gustavorteuber <gugareis135@gmail.com>"]
+readme = "README.md"
+packages = [{include = "djangogpt_3"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+django = "^4.2.7"
+djangorestframework = "^3.14.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
