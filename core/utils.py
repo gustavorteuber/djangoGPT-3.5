@@ -5,7 +5,7 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 def get_gpt3_response(message):
     response = openai.Completion.create(
-        engine="text-davinci-002",
+        engine="text-davinci-003",
         prompt=message,
         max_tokens=100,
         n=1,

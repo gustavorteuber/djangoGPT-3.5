@@ -12,12 +12,16 @@ class ChatMessageListCreateView(generics.ListCreateAPIView):
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        self.perform_create(serializer)
 
         user_message = serializer.validated_data['content']
-        gpt3_response = get_gpt3_response(user_message)
 
-        response_message = ChatMessage.objects.create(content=gpt3_response)
+        existing_response = ChatMessage.objects.filter(content=user_message).first()
+
+        if existing_response:
+            response_message = existing_response
+        else:
+            gpt3_response = get_gpt3_response(user_message)
+            response_message = ChatMessage.objects.create(content=gpt3_response)
 
         headers = self.get_success_headers(serializer.data)
         return Response(ChatMessageSerializer(response_message).data, status=status.HTTP_201_CREATED, headers=headers)

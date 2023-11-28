@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Django App</title>
+</head>
+<body>
+    <form method="post" action="{% url 'your_view_name' %}">
+        {% csrf_token %}
+        <label for="user_message">User Message:</label>
+        <textarea name="user_message" rows="4" cols="50"></textarea>
+        <br>
+        <input type="submit" value="Get GPT Response">
+    </form>
+
+    {% if user_message %}
+        <h2>User Message:</h2>
+        <p>{{ user_message }}</p>
+
+        <h2>GPT-3.5-turbo Response:</h2>
+        <p>{{ gpt3_response }}</p>
+    {% endif %}
+</body>
+</html>
